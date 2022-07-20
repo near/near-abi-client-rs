@@ -1,0 +1,13 @@
+[package]
+name = "delegator-generation"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0"
+near-sdk = { git = "https://github.com/near/near-sdk-rs.git", rev = "9ab6df8ed35e67c247299059d8277c2170a0a91b", features = ["abi"] }
+near-abi-client-macros = { path = "../../near-abi-client-macros" }
+serde_json = "1.0"
+serde = "1.0"
+tokio = { version = "1.14", features = ["full"] }
+workspaces = "0.3.1"
