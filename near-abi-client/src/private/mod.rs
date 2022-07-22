@@ -149,6 +149,6 @@ fn expand_subschema(
     expander: &mut Expander,
     schema: &near_sdk::__private::schemars::schema::Schema,
 ) -> proc_macro2::Ident {
-    let schemafy_schema = schemars_schema_to_schemafy(&schema);
+    let schemafy_schema = schemars_schema_to_schemafy(schema);
     format_ident!("{}", expander.expand_type_from_schema(&schemafy_schema).typ)
 }
