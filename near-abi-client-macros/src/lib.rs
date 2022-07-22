@@ -14,7 +14,7 @@ pub fn near_abi_client(tokens: proc_macro::TokenStream) -> proc_macro::TokenStre
             .metadata
             .name
             .clone()
-            .map(|n| format_ident!("Ext{}", n.to_case(Case::UpperCamel)))
+            .map(|n| format_ident!("{}Client", n.to_case(Case::UpperCamel)))
     });
     let contract_name = if let Some(name) = contract_name {
         name

@@ -61,11 +61,11 @@ impl Generator {
                         .metadata
                         .name
                         .clone()
-                        .map(|n| format_ident!("Ext{}", n.to_case(Case::UpperCamel)))
+                        .map(|n| format_ident!("{}Client", n.to_case(Case::UpperCamel)))
                 })
                 .ok_or_else(|| {
                     anyhow!(
-                        "ABI file '{}' does not contain a contract name. Please supply the name as the second tuple parameter.",
+                        "ABI file '{}' does not contain a contract name. Please supply the name via `file_with_name`.",
                         abi_path.display()
                     )
                 })?;
