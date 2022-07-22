@@ -1,9 +1,8 @@
-use near_abi_client::Config;
+use near_abi_client::Generator;
 
 fn main() -> anyhow::Result<()> {
-    let config = Config {
-        out_dir: Some("gen".into()),
-    };
-    config.generate_abi(&[("src/adder.json", None)])?;
+    Generator::new("gen".into())
+        .file("src/adder.json")
+        .generate()?;
     Ok(())
 }

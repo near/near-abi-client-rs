@@ -1,4 +1,4 @@
-use near_abi_client::Config;
+use near_abi_client::Generator;
 use quote::quote;
 use std::fs;
 use tempdir::TempDir;
@@ -7,11 +7,9 @@ use tempdir::TempDir;
 fn test_generate_abi() -> anyhow::Result<()> {
     let tmp_dir = TempDir::new("adder-generated-code")?;
     let tmp_dir_path = tmp_dir.into_path();
-    let config = Config {
-        out_dir: Some(tmp_dir_path.clone()),
-    };
-
-    config.generate_abi(&[("tests/adder.json", None)])?;
+    Generator::new(tmp_dir_path.clone())
+        .file("tests/adder.json")
+        .generate()?;
 
     let generated_code = fs::read_to_string(tmp_dir_path.join("adder.rs"))?;
     let expected = quote! {
