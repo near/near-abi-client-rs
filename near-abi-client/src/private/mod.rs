@@ -69,8 +69,8 @@ pub fn generate_abi_client(
                 pub async fn #name(
                     &self,
                     worker: &workspaces::Worker<impl workspaces::Network>,
-                    gas: near_primitives::types::Gas,
-                    deposit: near_primitives::types::Balance,
+                    gas: workspaces::types::Gas,
+                    deposit: workspaces::types::Balance,
                     #(#params),*
                 ) -> anyhow::Result<#return_type> {
                     let result = self.contract
