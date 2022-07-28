@@ -9,7 +9,7 @@ pub async fn run(a: u32, b: u32, c: u32, d: u32) -> anyhow::Result<(u32, u32)> {
         .dev_deploy(include_bytes!("../res/adder.wasm"))
         .await?;
 
-    let contract = adder::ExtAbi { contract };
+    let contract = adder::AbiClient { contract };
     let res = contract
         .add(&worker, vec![a.into(), b.into()], vec![c.into(), d.into()])
         .await?;

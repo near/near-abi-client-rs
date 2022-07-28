@@ -14,10 +14,10 @@ fn test_generate_abi() -> anyhow::Result<()> {
     let generated_code = fs::read_to_string(tmp_dir_path.join("adder.rs"))?;
     let expected = quote! {
         pub type Pair = Vec<i64>;
-        pub struct ExtAbi {
+        pub struct AbiClient {
             pub contract: workspaces::Contract,
         }
-        impl ExtAbi {
+        impl AbiClient {
             pub async fn add(
                 &self,
                 worker: &workspaces::Worker<impl workspaces::Network>,
