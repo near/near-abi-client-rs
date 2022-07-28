@@ -1,7 +1,7 @@
 use near_abi_client_macros::near_abi_client;
 use workspaces::network::DevAccountDeployer;
 
-near_abi_client! { "src/adder.json" }
+near_abi_client! { type AbiClient for "src/adder.json" }
 
 pub async fn run(a: u32, b: u32, c: u32, d: u32) -> anyhow::Result<(u32, u32)> {
     let worker = workspaces::sandbox().await?;
