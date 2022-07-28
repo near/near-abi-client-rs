@@ -4,7 +4,7 @@ use convert_case::{Case, Casing};
 use quote::format_ident;
 use std::fs::File;
 use std::io::Write;
-use std::path::{Path, PathBuf};
+use std::path::PathBuf;
 use std::{env, fs};
 
 // Private functions shared between macro & generation APIs, not stable to be used.
@@ -27,13 +27,13 @@ impl Generator {
         }
     }
 
-    pub fn file(mut self, path: impl AsRef<Path>) -> Self {
-        self.abis.push((path.as_ref().into(), None));
+    pub fn file(mut self, path: impl Into<PathBuf>) -> Self {
+        self.abis.push((path.into(), None));
         self
     }
 
-    pub fn file_with_name(mut self, path: impl AsRef<Path>, name: String) -> Self {
-        self.abis.push((path.as_ref().into(), Some(name)));
+    pub fn file_with_name(mut self, path: impl Into<PathBuf>, name: String) -> Self {
+        self.abis.push((path.into(), Some(name)));
         self
     }
 
