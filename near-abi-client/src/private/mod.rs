@@ -1,6 +1,6 @@
 use std::path::{Path, PathBuf};
 
-use near_sdk::__private::AbiRoot;
+use near_sdk::__private::{AbiRoot, AbiType};
 use quote::{format_ident, quote};
 use schemafy_lib::{Expander, Generator, Schema};
 
@@ -33,13 +33,19 @@ pub fn generate_abi_client(
             .iter()
             .zip(&param_names)
             .map(|(arg_param, arg_name)| {
-                let arg_type = expand_subschema(&mut expander, &arg_param.type_schema);
+                let arg_type = match &arg_param.typ {
+                    AbiType::Json { type_schema } => expand_subschema(&mut expander, type_schema),
+                    AbiType::Borsh { type_schema: _ } => panic!("Borsh is currently unsupported"),
+                };
                 quote! { #arg_name: #arg_type }
             })
             .collect::<Vec<_>>();
         let return_type = function
             .result
-            .map(|r_type| expand_subschema(&mut expander, &r_type.type_schema))
+            .map(|r_type| match r_type {
+                AbiType::Json { type_schema } => expand_subschema(&mut expander, &type_schema),
+                AbiType::Borsh { type_schema: _ } => panic!("Borsh is currently unsupported"),
+            })
             .unwrap_or_else(|| format_ident!("{}", "()"));
         let name_str = name.to_string();
         let args = if param_names.is_empty() {
