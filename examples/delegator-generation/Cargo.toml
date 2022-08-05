@@ -5,8 +5,8 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0"
+
 near-sdk = { version = "4.1.0-pre.0", features = ["abi"] }
-near-abi-client = { path = "../../near-abi-client" }
 workspaces = "0.3.1"
 
 [dev-dependencies]
@@ -14,4 +14,5 @@ tokio = { version = "1.14", features = ["full"] }
 
 [build-dependencies]
 anyhow = "1.0"
+
 near-abi-client = { path = "../../near-abi-client" }

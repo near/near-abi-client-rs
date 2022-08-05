@@ -1,16 +1,14 @@
-use __private::{generate_abi_client, read_abi};
-use anyhow::{anyhow, Result};
-use convert_case::{Case, Casing};
-use quote::format_ident;
 use std::fs::File;
 use std::io::Write;
 use std::path::PathBuf;
 use std::{env, fs};
 
-// Private functions shared between macro & generation APIs, not stable to be used.
-#[doc(hidden)]
-#[path = "private/mod.rs"]
-pub mod __private;
+use anyhow::{anyhow, Result};
+use convert_case::{Case, Casing};
+use quote::format_ident;
+
+use near_abi_client_impl::{generate_abi_client, read_abi};
+pub use near_abi_client_macros::generate;
 
 /// Configuration options for ABI code generation.
 #[derive(Default)]
