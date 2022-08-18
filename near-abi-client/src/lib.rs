@@ -7,7 +7,9 @@ use anyhow::{anyhow, Result};
 use convert_case::{Case, Casing};
 use quote::format_ident;
 
-use near_abi_client_impl::{generate_abi_client, read_abi};
+mod abi_core;
+
+use abi_core::{generate_abi_client, read_abi};
 pub use near_abi_client_macros::generate;
 
 /// Configuration options for ABI code generation.

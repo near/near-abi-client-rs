@@ -1,7 +1,6 @@
 [workspace]
 members = [
     "near-abi-client",
-    "near-abi-client-impl",
     "near-abi-client-macros",
 ]
 exclude = ["examples/"]

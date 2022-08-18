@@ -1,6 +1,9 @@
 use std::path::PathBuf;
 
-use near_abi_client_impl::{generate_abi_client, read_abi};
+#[path = "../../near-abi-client/src/abi_core.rs"]
+mod abi_core;
+
+use abi_core::{generate_abi_client, read_abi};
 
 #[proc_macro]
 pub fn generate(tokens: proc_macro::TokenStream) -> proc_macro::TokenStream {
