@@ -1,4 +1,4 @@
-use delegator_generation::run;
+use delegator_macro::run;
 
 #[tokio::test]
 async fn test_client() -> anyhow::Result<()> {

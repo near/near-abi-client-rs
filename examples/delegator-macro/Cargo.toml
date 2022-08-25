@@ -1,5 +1,5 @@
 [package]
-name = "delegator-generation"
+name = "delegator-macro"
 version = "0.1.0"
 edition = "2021"
 
