@@ -1,7 +1,9 @@
-use near_abi_client::Generator;
-use quote::quote;
 use std::fs;
+
+use quote::quote;
 use tempdir::TempDir;
+
+use near_abi_client::Generator;
 
 #[test]
 fn test_generate_abi() -> anyhow::Result<()> {
