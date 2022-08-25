@@ -1,15 +1,13 @@
-use std::path::{Path, PathBuf};
-
+use near_abi::{AbiRoot, AbiType};
 use quote::{format_ident, quote};
 use schemafy_lib::{Expander, Generator, Schema};
-
-use near_sdk::__private::{AbiRoot, AbiType};
+use std::path::{Path, PathBuf};
 
 pub fn generate_abi_client(
     near_abi: AbiRoot,
     contract_name: proc_macro2::Ident,
 ) -> proc_macro2::TokenStream {
-    let schema_json = serde_json::to_string(&near_abi.abi.root_schema).unwrap();
+    let schema_json = serde_json::to_string(&near_abi.body.root_schema).unwrap();
 
     let generator = Generator::builder().with_input_json(&schema_json).build();
     let (mut token_stream, schema) = generator.generate_with_schema();
@@ -22,7 +20,7 @@ pub fn generate_abi_client(
     });
 
     let mut methods_stream = proc_macro2::TokenStream::new();
-    for function in near_abi.abi.functions {
+    for function in near_abi.body.functions {
         let name = format_ident!("{}", function.name);
         let param_names = function
             .params
@@ -142,7 +140,7 @@ fn get_crate_root() -> std::io::Result<PathBuf> {
     Ok(current_dir)
 }
 
-fn schemars_schema_to_schemafy(schema: &near_sdk::__private::schemars::schema::Schema) -> Schema {
+fn schemars_schema_to_schemafy(schema: &schemars::schema::Schema) -> Schema {
     let schema_json = serde_json::to_string(&schema).unwrap();
     serde_json::from_str(&schema_json).unwrap_or_else(|err| {
         panic!(
@@ -154,7 +152,7 @@ fn schemars_schema_to_schemafy(schema: &near_sdk::__private::schemars::schema::S
 
 fn expand_subschema(
     expander: &mut Expander,
-    schema: &near_sdk::__private::schemars::schema::Schema,
+    schema: &schemars::schema::Schema,
 ) -> proc_macro2::Ident {
     let schemafy_schema = schemars_schema_to_schemafy(schema);
     format_ident!("{}", expander.expand_type_from_schema(&schemafy_schema).typ)

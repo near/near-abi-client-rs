@@ -4,11 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-serde = "1.0"
-tokio = { version = "1.14", features = ["full"] }
 anyhow = "1.0"
-serde_json = "1.0"
-
-near-sdk = { version = "4.1.0-pre.0", features = ["abi"] }
-workspaces = "0.3.1"
+workspaces = "0.4.1"
 near-abi-client = { path = "../../near-abi-client" }
+
+[dev-dependencies]
+tokio = { version = "1.14", features = ["full"] }
