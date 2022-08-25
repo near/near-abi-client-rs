@@ -3,5 +3,5 @@ members = [
     "near-abi-client",
     "near-abi-client-impl",
     "near-abi-client-macros",
+    "examples/*",
 ]
-exclude = ["examples/"]
