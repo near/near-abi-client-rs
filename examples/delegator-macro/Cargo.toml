@@ -5,9 +5,8 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0"
-near-sdk = { version = "4.1.0-pre.0", features = ["abi"] }
 near-abi-client-macros = { path = "../../near-abi-client-macros" }
-serde_json = "1.0"
-serde = "1.0"
+workspaces = "0.4.1"
+
+[dev-dependencies]
 tokio = { version = "1.14", features = ["full"] }
-workspaces = "0.3.1"
