@@ -22,17 +22,16 @@ fn test_generate_abi() -> anyhow::Result<()> {
         impl AbiClient {
             pub async fn add(
                 &self,
-                worker: &workspaces::Worker<impl workspaces::Network>,
                 a: Pair,
                 b: Pair
             ) -> anyhow::Result<Pair> {
                 let result = self
                     .contract
-                    .call(worker, "add")
-                    .args_json([a, b])?
+                    .call("add")
+                    .args_json([a, b])
                     .view()
                     .await?;
-                result.json::<Pair>()
+                Ok(result.json::<Pair>()?)
             }
         }
     };

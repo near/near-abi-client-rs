@@ -58,34 +58,32 @@ pub fn generate_abi_client(
             methods_stream.extend(quote! {
                 pub async fn #name(
                     &self,
-                    worker: &workspaces::Worker<impl workspaces::Network>,
                     #(#params),*
                 ) -> anyhow::Result<#return_type> {
                     let result = self.contract
-                        .call(worker, #name_str)
-                        .args_json(#args)?
+                        .call(#name_str)
+                        .args_json(#args)
                         .view()
                         .await?;
-                    result.json::<#return_type>()
+                    Ok(result.json::<#return_type>()?)
                 }
             });
         } else {
             methods_stream.extend(quote! {
                 pub async fn #name(
                     &self,
-                    worker: &workspaces::Worker<impl workspaces::Network>,
                     gas: workspaces::types::Gas,
                     deposit: workspaces::types::Balance,
                     #(#params),*
                 ) -> anyhow::Result<#return_type> {
                     let result = self.contract
-                        .call(worker, #name_str)
-                        .args_json(#args)?
+                        .call(#name_str)
+                        .args_json(#args)
                         .gas(gas)
                         .deposit(deposit)
                         .transact()
                         .await?;
-                    result.json::<#return_type>()
+                    Ok(result.json::<#return_type>()?)
                 }
             });
         }
