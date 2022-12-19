@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.3.0",
   "metadata": {
     "name": "abi",
     "version": "0.1.0",
@@ -12,23 +12,24 @@
       {
         "name": "add",
         "doc": " Adds two pairs point-wise.",
-        "is_view": true,
-        "params": [
-          {
-            "name": "a",
-            "serialization_type": "json",
-            "type_schema": {
-              "$ref": "#/definitions/Pair"
+        "kind": "view",
+        "params": {
+          "serialization_type": "json",
+          "args": [
+            {
+              "name": "a",
+              "type_schema": {
+                "$ref": "#/definitions/Pair"
+              }
+            },
+            {
+              "name": "b",
+              "type_schema": {
+                "$ref": "#/definitions/Pair"
+              }
             }
-          },
-          {
-            "name": "b",
-            "serialization_type": "json",
-            "type_schema": {
-              "$ref": "#/definitions/Pair"
-            }
-          }
-        ],
+          ]
+        },
         "result": {
           "serialization_type": "json",
           "type_schema": {

@@ -1,4 +1,4 @@
-use near_abi::{AbiRoot, AbiType};
+use near_abi::{AbiFunctionKind, AbiParameters, AbiRoot, AbiType};
 use quote::{format_ident, quote};
 use schemafy_lib::{Expander, Generator, Schema};
 use std::path::{Path, PathBuf};
@@ -22,23 +22,21 @@ pub fn generate_abi_client(
     let mut methods_stream = proc_macro2::TokenStream::new();
     for function in near_abi.body.functions {
         let name = format_ident!("{}", function.name);
-        let param_names = function
-            .params
-            .iter()
-            .map(|arg_param| format_ident!("{}", arg_param.name))
-            .collect::<Vec<_>>();
-        let params = function
-            .params
-            .iter()
-            .zip(&param_names)
-            .map(|(arg_param, arg_name)| {
-                let arg_type = match &arg_param.typ {
-                    AbiType::Json { type_schema } => expand_subschema(&mut expander, type_schema),
-                    AbiType::Borsh { type_schema: _ } => panic!("Borsh is currently unsupported"),
-                };
-                quote! { #arg_name: #arg_type }
-            })
-            .collect::<Vec<_>>();
+
+        let mut param_names = vec![];
+        let params = match &function.params {
+            AbiParameters::Borsh { .. } => panic!("Borsh is currently unsupported"),
+            AbiParameters::Json { args } => args
+                .into_iter()
+                .map(|arg| {
+                    param_names.push(&arg.name);
+                    let arg_name = format_ident!("{}", arg.name);
+                    let arg_type = expand_subschema(&mut expander, &arg.type_schema);
+                    quote! { #arg_name: #arg_type }
+                })
+                .collect::<Vec<_>>(),
+        };
+
         let return_type = function
             .result
             .map(|r_type| match r_type {
@@ -54,7 +52,7 @@ pub fn generate_abi_client(
         } else {
             quote! { [#(#param_names),*] }
         };
-        if function.is_view {
+        if function.kind == AbiFunctionKind::View {
             methods_stream.extend(quote! {
                 pub async fn #name(
                     &self,
