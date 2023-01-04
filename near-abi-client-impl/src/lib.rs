@@ -27,7 +27,7 @@ pub fn generate_abi_client(
         let params = match &function.params {
             AbiParameters::Borsh { .. } => panic!("Borsh is currently unsupported"),
             AbiParameters::Json { args } => args
-                .into_iter()
+                .iter()
                 .map(|arg| {
                     param_names.push(format_ident!("{}", arg.name));
                     let arg_name = param_names.last().unwrap();
