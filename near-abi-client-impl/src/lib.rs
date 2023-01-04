@@ -1,6 +1,6 @@
 use near_abi::{AbiFunctionKind, AbiParameters, AbiRoot, AbiType};
+use near_schemafy_lib::{Expander, Generator, Schema};
 use quote::{format_ident, quote};
-use schemafy_lib::{Expander, Generator, Schema};
 use std::path::{Path, PathBuf};
 
 pub fn generate_abi_client(
