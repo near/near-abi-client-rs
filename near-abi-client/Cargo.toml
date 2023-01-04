@@ -6,6 +6,9 @@ rust-version = "1.56.0"
 license = "MIT OR Apache-2.0"
 readme = "README.md"
 repository = "https://github.com/near/near-abi-client-rs"
+description = """
+Library to generate Rust clients for NEAR smart contracts.
+"""
 
 [dependencies]
 syn = "1.0"
