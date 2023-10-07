@@ -17,7 +17,7 @@ fn test_generate_abi() -> anyhow::Result<()> {
     let expected = quote! {
         pub type Pair = Vec<i64>;
         pub struct AbiClient {
-            pub contract: workspaces::Contract,
+            pub contract: near_workspaces::Contract,
         }
         impl AbiClient {
             pub async fn add(

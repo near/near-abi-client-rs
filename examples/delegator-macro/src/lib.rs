@@ -3,7 +3,7 @@ mod adder {
 }
 
 pub async fn run(a: u32, b: u32, c: u32, d: u32) -> anyhow::Result<(u32, u32)> {
-    let worker = workspaces::sandbox().await?;
+    let worker = near_workspaces::sandbox().await?;
     let contract = worker
         .dev_deploy(include_bytes!("../res/adder.wasm"))
         .await?;
