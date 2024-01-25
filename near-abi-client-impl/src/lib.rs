@@ -15,7 +15,7 @@ pub fn generate_abi_client(
 
     token_stream.extend(quote! {
         pub struct #contract_name {
-            pub contract: workspaces::Contract,
+            pub contract: near_workspaces::Contract,
         }
     });
 
@@ -70,8 +70,8 @@ pub fn generate_abi_client(
             methods_stream.extend(quote! {
                 pub async fn #name(
                     &self,
-                    gas: workspaces::types::Gas,
-                    deposit: workspaces::types::Balance,
+                    gas: near_workspaces::types::Gas,
+                    deposit: near_workspaces::types::Balance,
                     #(#params),*
                 ) -> anyhow::Result<#return_type> {
                     let result = self.contract
@@ -125,7 +125,6 @@ fn get_crate_root() -> std::io::Result<PathBuf> {
 
     for p in current_dir.ancestors() {
         if std::fs::read_dir(p)?
-            .into_iter()
             .filter_map(Result::ok)
             .any(|p| p.file_name().eq("Cargo.toml"))
         {

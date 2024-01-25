@@ -1,13 +1,12 @@
 use std::fs;
 
 use quote::quote;
-use tempdir::TempDir;
 
 use near_abi_client::Generator;
 
 #[test]
 fn test_generate_abi() -> anyhow::Result<()> {
-    let tmp_dir = TempDir::new("adder-generated-code")?;
+    let tmp_dir = tempfile::tempdir()?;
     let tmp_dir_path = tmp_dir.into_path();
     Generator::new(tmp_dir_path.clone())
         .file("tests/adder.json")
@@ -17,7 +16,7 @@ fn test_generate_abi() -> anyhow::Result<()> {
     let expected = quote! {
         pub type Pair = Vec<i64>;
         pub struct AbiClient {
-            pub contract: workspaces::Contract,
+            pub contract: near_workspaces::Contract,
         }
         impl AbiClient {
             pub async fn add(
