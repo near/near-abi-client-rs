@@ -13,4 +13,4 @@ tokio = { version = "1.14", features = ["full"] }
 
 [build-dependencies]
 anyhow = "1.0"
-near-abi-client = { path = "../../near-abi-client", version = "0.1.0" }
+near-abi-client = { path = "../../near-abi-client", version = "0.1.1" }
