@@ -1,13 +1,12 @@
 use std::fs;
 
 use quote::quote;
-use tempdir::TempDir;
 
 use near_abi_client::Generator;
 
 #[test]
 fn test_generate_abi() -> anyhow::Result<()> {
-    let tmp_dir = TempDir::new("adder-generated-code")?;
+    let tmp_dir = tempfile::tempdir()?;
     let tmp_dir_path = tmp_dir.into_path();
     Generator::new(tmp_dir_path.clone())
         .file("tests/adder.json")
