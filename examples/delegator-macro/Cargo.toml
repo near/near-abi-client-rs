@@ -6,7 +6,7 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0"
-near-workspaces = "0.10.0"
+near-workspaces = "0.22"
 near-abi-client = { path = "../../near-abi-client", version = "0.1.1" }
 
 [dev-dependencies]
