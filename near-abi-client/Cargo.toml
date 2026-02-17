@@ -1,6 +1,6 @@
 [package]
 name = "near-abi-client"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2024"
 rust-version = "1.85.0"
 license = "MIT OR Apache-2.0"
@@ -17,8 +17,8 @@ anyhow = "1.0"
 convert_case = "0.5"
 prettyplease = "0.1"
 
-near-abi-client-impl = { path = "../near-abi-client-impl", version = "0.1.1" }
-near-abi-client-macros = { path = "../near-abi-client-macros", version = "0.1.1" }
+near-abi-client-impl = { path = "../near-abi-client-impl", version = "0.1.2" }
+near-abi-client-macros = { path = "../near-abi-client-macros", version = "0.1.2" }
 
 [dev-dependencies]
 tempfile = "3"
