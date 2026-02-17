@@ -1,8 +1,8 @@
 [workspace]
-resolver = "3"
 members = [
     "near-abi-client",
     "near-abi-client-impl",
     "near-abi-client-macros",
     "examples/*",
 ]
+resolver = "3"

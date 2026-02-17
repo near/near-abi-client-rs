@@ -6,7 +6,7 @@ edition = "2024"
 
 [dependencies]
 anyhow = "1.0"
-near-workspaces = "0.10.0"
+near-workspaces = "0.22.0"
 
 [dev-dependencies]
 tokio = { version = "1.14", features = ["full"] }
