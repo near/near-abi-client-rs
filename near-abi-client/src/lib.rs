@@ -3,7 +3,7 @@ use std::io::Write;
 use std::path::PathBuf;
 use std::{env, fs};
 
-use anyhow::{anyhow, Result};
+use anyhow::{Result, anyhow};
 use convert_case::{Case, Casing};
 use quote::format_ident;
 

@@ -2,11 +2,11 @@
 publish = false
 name = "delegator-macro"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 
 [dependencies]
 anyhow = "1.0"
-near-workspaces = "0.10.0"
+near-workspaces = "0.22.0"
 near-abi-client = { path = "../../near-abi-client", version = "0.1.1" }
 
 [dev-dependencies]
