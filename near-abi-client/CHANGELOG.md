@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.2](https://github.com/near/near-abi-client-rs/compare/near-abi-client-v0.1.1...near-abi-client-v0.1.2) - 2026-02-17
+
+### Other
+
+- upgrade to Rust edition 2024 ([#18](https://github.com/near/near-abi-client-rs/pull/18))
+
 ## [0.1.1](https://github.com/near/near-abi-client-rs/compare/near-abi-client-v0.1.0...near-abi-client-v0.1.1) - 2024-01-25
 
 ### Fixed

@@ -7,7 +7,7 @@ edition = "2024"
 [dependencies]
 anyhow = "1.0"
 near-workspaces = "0.22.0"
-near-abi-client = { path = "../../near-abi-client", version = "0.1.1" }
+near-abi-client = { path = "../../near-abi-client", version = "0.1.2" }
 
 [dev-dependencies]
 tokio = { version = "1.14", features = ["full"] }
